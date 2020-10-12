@@ -1,6 +1,8 @@
 import React from 'react';
 import './CSVButton.css';
-
+/**
+ * Button to download table stats as a CSV file.
+ */
 class CSVButton extends React.Component {
   render(){
     return (

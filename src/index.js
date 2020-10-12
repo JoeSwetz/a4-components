@@ -3,10 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import {BrowserRouter, Switch, Route} from "react-router-dom";
-//import {Route} from "react-router";
 import App from "./App";
 import LoginButton from "./LoginButton";
 
+/**
+ * Top-level component for the entire application: switches from LoginButton to
+ * App component once user has logged in.
+ */
 ReactDOM.render(
   <React.StrictMode>
       <BrowserRouter>

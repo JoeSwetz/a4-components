@@ -2,6 +2,11 @@ import React from 'react';
 import {Redirect} from "react-router-dom";
 
 let authSuccess = false;
+
+/**
+ * Component for displaying and handling the different login options for users.
+ * Equivalent to index.html from A3 (i.e the login screen).
+ */
 class LoginButton extends React.Component {
     constructor(props){
         super(props);
@@ -13,6 +18,10 @@ class LoginButton extends React.Component {
         this.handleLogin = this.handleLogin.bind(this);
     }
 
+    /**
+     * Handles input for the username and password fields, updating their corresponding
+     * state variables appropriately.
+     */
     handleInput(inputEvent) {
         this.setState({
             [inputEvent.target.name]: inputEvent.target.value,
