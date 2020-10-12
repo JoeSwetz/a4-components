@@ -8,13 +8,12 @@ const fs   = require("fs"),
       passport = require("passport"),
       bodyParser = require("body-parser"),
       morganLogger = require("morgan"),
-      port = process.env.ServerPort || 5000;
+      port = process.env.ServerPort || 3000;
 
 app.listen(port);
 
 /////////////////// Middleware Initialization /////////////////////////
-//Automatically send out contents of public folder
-//app.use(express.static("./public"));
+//Automatically send out all compiled code
 app.use(express.static("./build"));
 
 //Set up logging of incoming requests
@@ -35,7 +34,7 @@ let GitHubStrategy = require('passport-github').Strategy;
 passport.use("github", new GitHubStrategy({
         clientID: process.env.clientID,
         clientSecret: process.env.clientSecret,
-        callbackURL: process.env.callbackURL
+        callbackURL: process.env.callbackURL,
     },
     function(accessToken, refreshToken, profile, cb) {
         console.log("profile: " +profile);
