@@ -9,7 +9,6 @@ class CSVButton extends React.Component {
   }
 }
 
-
 /**
  * Downloads all of the current user's stats from the database as a CSV
  * file called "stats.csv".
@@ -35,15 +34,14 @@ function handle_csv(){
         method:'GET'
     }).then(function(response){
         return response.blob()
-    })
-        .then(function(blob) {
-            let a = document.createElement("a");
-            a.href = window.URL.createObjectURL(blob);
-            a.download = "stats.csv";
-            document.body.appendChild(a);// OA: we need to append the element to the dom -> otherwise it will not work in firefox
-            a.click();
-            a.remove();// OA: afterwards we remove the element again
-        });
+    }).then(function(blob) {
+        let a = document.createElement("a");
+        a.href = window.URL.createObjectURL(blob);
+        a.download = "stats.csv";
+        document.body.appendChild(a);// OA: we need to append the element to the dom -> otherwise it will not work in firefox
+        a.click();
+        a.remove();// OA: afterwards we remove the element again
+    });
 }
 
 export default CSVButton;

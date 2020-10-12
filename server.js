@@ -14,7 +14,8 @@ app.listen(port);
 
 /////////////////// Middleware Initialization /////////////////////////
 //Automatically send out contents of public folder
-app.use(express.static("./public"));
+//app.use(express.static("./public"));
+app.use(express.static("./build"));
 
 //Set up logging of incoming requests
 let logfile = fs.createWriteStream("serverRequests.log");
@@ -53,20 +54,20 @@ app.get('/auth/github/callback', passport.authenticate('github'),
     }
 );
 
-//let newUser = false;//used to indicate whether or not to alert client of new account
+let newUser = false;//used to indicate whether or not to alert client of new account
 app.post("/app", function(request, response){
     response.status(200);
-    //The "new" header will tell the client whether or not they need to
-    //display a new message to the user that a new account was created.
-    //response.redirect('/app');
-    /*response.sendFile("./public/app.html", {root: "./", headers:{"new": newUser}}, function(error){
+});
+
+app.get("/app", function(request, response){
+    response.status(200).sendFile("build/index.html", {root: "./", headers: {"new": newUser}}, function(error){
+        //The "new" header will tell the client whether or not they need to
+        //display a new message to the user that a new account was created.
         if(error){
-            console.log("Error occurred sending app.html: " +error);
-        }else{
-            console.log("app.html sent");
+            console.log("Error occurred sending ./build/index.html: " +error);
         }
         newUser = false;
-    });*/
+    });
 });
 
 //Route for signing into the application with a username and password
